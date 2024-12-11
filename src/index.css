@@ -46,3 +46,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+: root {
+  --for-wireframe: rgba(234, 234, 234, 1);
+  }
