@@ -1,10 +1,10 @@
 import './App.css'
-import React from "react";
-import styled from "styled-components";
-import { SideDeck } from "./components/side-deck/index";
-import { OnMapCard } from "./components/on-map-card/index"
-import { InfoCard } from './components/info-card';
-import { Header } from './components/header';
+// import React from "react";
+// import styled from "styled-components";
+import SideDeck  from "./components/side-deck/index.jsx";
+import OnMapCard from "./components/on-map-card/index.jsx"
+import InfoCard from './components/info-card/index.jsx';
+import Header from "./components/header/index.jsx";
 function App() {
 
 
@@ -12,8 +12,8 @@ function App() {
     <>
       <Header/>
       <SideDeck />
-      <InfoCard/>
-      <OnMapCard/>
+      {/* <InfoCard/> */}
+      {/* <OnMapCard/> */}
     </>
   )
 }

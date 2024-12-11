@@ -1,205 +1,166 @@
-import React from "react";
-import styled from "styled-components";
+// import React from "react";
 
-const SidebarContainer = styled.div`
-  background-color: #ffffff;
-  width: 252px;
-  padding: 16px;
-  border-right: 1px solid #e5e7eb;
-`;
+import search from "../../assets/search.svg";
+import { useState, useRef, useEffect } from "react";
+import * as s from "./index";
 
-const Section = styled.section`
-  margin-bottom: 32px;
-`;
+const SideDeck = () => {
+  const [people, setPeople] = useState(3);
+  const [isDragging, setIsDragging] = useState(false);
+  const sliderRef = useRef(null);
 
-const Title = styled.h2`
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 16px;
-`;
+  // 최소/최대 인원
+  const MIN_PEOPLE = 1;
+  const MAX_PEOPLE = 10;
 
-const InputGroup = styled.div`
-  margin-bottom: 16px;
-`;
+  // 퍼센티지 계산
+  const calculatePercentage = (value) => {
+    return ((value - MIN_PEOPLE) / (MAX_PEOPLE - MIN_PEOPLE)) * 100;
+  };
 
-const Label = styled.label`
-  display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
-`;
+  // 값을 퍼센티지에서 인원수로 변환
+  const percentageToValue = (percentage) => {
+    return Math.round(
+      (percentage / 100) * (MAX_PEOPLE - MIN_PEOPLE) + MIN_PEOPLE
+    );
+  };
 
-const SearchInputWrapper = styled.div`
-  position: relative;
-`;
+  // 마우스 위치를 퍼센티지로 변환
+  const getPercentageFromMousePosition = (clientX) => {
+    const { left, width } = sliderRef.current.getBoundingClientRect();
+    let percentage = ((clientX - left) / width) * 100;
+    percentage = Math.min(Math.max(percentage, 0), 100);
+    return percentage;
+  };
 
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 8px 36px 8px 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  
-  &::placeholder {
-    color: #9ca3af;
-  }
-`;
+  // 마우스 이벤트 핸들러
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    updateValue(e.clientX);
+  };
 
-const SearchIcon = styled.span`
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-`;
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      updateValue(e.clientX);
+    }
+  };
 
-const CheckboxGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
-const CheckboxLabel = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-`;
+  const handleClick = (e) => {
+    updateValue(e.clientX);
+  };
 
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`;
+  // 값 업데이트
+  const updateValue = (clientX) => {
+    const percentage = getPercentageFromMousePosition(clientX);
+    const newValue = percentageToValue(percentage);
+    setPeople(newValue);
+  };
 
-const RatingButton = styled.button`
-  padding: 8px 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background-color: white;
-`;
+  // 이벤트 리스너 등록/제거
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    }
 
-const Star = styled.span`
-  color: #fbbf24;
-`;
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging]);
 
-const SliderContainer = styled.div`
-  position: relative;
-  padding-top: 24px;
-`;
-
-const SliderTrack = styled.div`
-  width: 100%;
-  height: 8px;
-  background-color: #e5e7eb;
-  border-radius: 4px;
-`;
-
-const SliderThumb = styled.div`
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background-color: black;
-  border-radius: 50%;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
-const SliderValue = styled.div`
-  text-align: center;
-  margin-top: 8px;
-  font-size: 14px;
-`;
-
-export const SideDeck = () => {
   return (
-    <SidebarContainer>
-      {/* Region Section */}
-      <Section>
-        <Title>지역</Title>
-        <InputGroup>
-          <Label>대분류</Label>
-          <SearchInputWrapper>
-            <SearchInput placeholder="전체" />
-            <SearchIcon>🔍</SearchIcon>
-          </SearchInputWrapper>
-        </InputGroup>
-        <InputGroup>
-          <Label>소분류</Label>
-          <SearchInputWrapper>
-            <SearchInput placeholder="전체" />
-            <SearchIcon>🔍</SearchIcon>
-          </SearchInputWrapper>
-        </InputGroup>
-      </Section>
+    <s.SidebarContainer>
+      <s.Section>
+        <s.Title>지역</s.Title>
+        <s.InputGroup>
+          <s.Label>대분류</s.Label>
+          <s.SearchInputWrapper>
+            <s.SearchInput placeholder="전체" />
+            <s.SearchIcon>
+              <img className="search-icon" alt="Search" src={search} />
+            </s.SearchIcon>
+          </s.SearchInputWrapper>
+        </s.InputGroup>
+        <s.InputGroup>
+          <s.Label>소분류</s.Label>
+          <s.SearchInputWrapper>
+            <s.SearchInput placeholder="전체" />
+            <s.SearchIcon>
+              <img className="search-icon" alt="Search" src={search} />
+            </s.SearchIcon>
+          </s.SearchInputWrapper>
+        </s.InputGroup>
+      </s.Section>
 
-      {/* Genre Section */}
-      <Section>
-        <Title>장르</Title>
-        <CheckboxGroup>
+      <s.Section>
+        <s.Title>장르</s.Title>
+        <s.CheckboxGroup>
           {[
             "전체",
             "감성/드라마/로맨스",
             "액션/어드벤처",
             "SF/판타지",
             "코믹/문제/기타",
-            "추리/미스터리"
+            "추리/미스터리",
           ].map((genre) => (
-            <CheckboxLabel key={genre}>
+            <s.CheckboxLabel key={genre}>
               <input type="checkbox" />
               <span>{genre}</span>
-            </CheckboxLabel>
+            </s.CheckboxLabel>
           ))}
-        </CheckboxGroup>
-      </Section>
+        </s.CheckboxGroup>
+      </s.Section>
 
-      {/* Difficulty Level Section */}
-      <Section>
-        <Title>난이도</Title>
-        <ButtonGroup>
+      <s.Section>
+        <s.Title>난이도</s.Title>
+        <s.ButtonGroup>
           {[1, 2, 3, 4, 5].map((level) => (
-            <RatingButton key={level}>
-              <Star>★</Star>
+            <s.RatingButton key={level}>
+              <s.Star>★</s.Star>
               <span>{level}</span>
-            </RatingButton>
+            </s.RatingButton>
           ))}
-        </ButtonGroup>
-      </Section>
+        </s.ButtonGroup>
+      </s.Section>
 
-      {/* Number of Players Section */}
-      <Section>
-        <Title>인원수</Title>
-        <SliderContainer>
-          <SliderTrack />
-          <SliderThumb />
-          <SliderValue>3명</SliderValue>
-        </SliderContainer>
-      </Section>
+      <s.Section>
+      <s.Title>인원수</s.Title>
+      <s.SliderContainer>
+        <s.SliderTrack ref={sliderRef} onClick={handleClick}>
+          <s.SliderProgress percentage={calculatePercentage(people)} />
+        </s.SliderTrack>
+        <s.SliderThumb 
+          percentage={calculatePercentage(people)}
+          onMouseDown={handleMouseDown}
+        />
+        <s.SliderValue>{people}명</s.SliderValue>
+      </s.SliderContainer>
+    </s.Section>
 
-      {/* Horror Level Section */}
-      <Section>
-        <Title>공포도</Title>
-        <ButtonGroup>
+      <s.Section>
+        <s.Title>공포도</s.Title>
+        <s.ButtonGroup>
           {["없음", "1점", "2점", "3점", "4점", "5점"].map((level) => (
-            <RatingButton key={level}>
-              {level}
-            </RatingButton>
+            <s.RatingButton key={level}>{level}</s.RatingButton>
           ))}
-        </ButtonGroup>
-      </Section>
+        </s.ButtonGroup>
+      </s.Section>
 
-      {/* Activity Level Section */}
-      <Section>
-        <Title>활동성</Title>
-        <ButtonGroup>
+      <s.Section>
+        <s.Title>활동성</s.Title>
+        <s.ButtonGroup>
           {["없음", "1점", "2점", "3점", "4점", "5점"].map((level) => (
-            <RatingButton key={level}>
-              {level}
-            </RatingButton>
+            <s.RatingButton key={level}>{level}</s.RatingButton>
           ))}
-        </ButtonGroup>
-      </Section>
-    </SidebarContainer>
+        </s.ButtonGroup>
+      </s.Section>
+    </s.SidebarContainer>
   );
 };
+
+export default SideDeck;

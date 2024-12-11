@@ -10,6 +10,7 @@ ul {
 * {
   margin: 0;
   padding: 0;
+
   font: inherit;
   color: inherit;
 }
@@ -50,3 +51,7 @@ table {
 : root {
   --for-wireframe: rgba(234, 234, 234, 1);
   }
+
+*{
+  font-family: Wanted Sans;
+}  
