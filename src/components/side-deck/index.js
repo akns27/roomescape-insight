@@ -6,6 +6,7 @@ export const SidebarContainer = styled.div`
   width: 252px;
   padding: 16px;
   border-right: 1px solid #e5e7eb;
+  float: left;
 `;
 
 export const Section = styled.section`
@@ -54,6 +55,8 @@ export const CheckboxGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+
 `;
 
 export const CheckboxLabel = styled.label`
@@ -61,7 +64,11 @@ export const CheckboxLabel = styled.label`
   align-items: center;
   gap: 8px;
   font-size: 14px;
+
+
 `;
+
+
 
 export const ButtonGroup = styled.div`
   display: flex;
@@ -79,6 +86,12 @@ export const RatingButton = styled.button`
   justify-content: center;
   gap: 6px;
   background-color: white;
+
+  &:focus{
+    background-color: #1C1C1E;
+    border: none;
+    color: white;
+  }
 `;
 
 export const Star = styled.span`

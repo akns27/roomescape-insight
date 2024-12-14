@@ -8,31 +8,34 @@ export const StyledHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 12px 25px 12px 64px;
 
 
-  .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 28px;
+`;
+
+export const SearchInputWrapper = styled.div`
+  position: relative;
+`;
+
+export const SearchInput = styled.input`
+  background-color: #ffffff;
+  border-radius: 12px;
+  height: 40px;
+  width: 275px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+
+  &::placeholder {
+    color: #9ca3af;
   }
+`;
 
-
-  .search-container {
-    background-color: #ffffff;
-    border-radius: 12px;
-    height: 40px;
-    width: 275px;
-    display: flex;
-    align-items: center;
-    padding: 8px;
-  }
-
-  .search-icon {
-    height: 24px;
-    width: 24px;
-  }
+export const SearchIcon = styled.span`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px;
+  width: 24px;
 `;

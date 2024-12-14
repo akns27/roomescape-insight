@@ -7,7 +7,8 @@ export const StyledCard = styled.div`
   padding: 16px;
   display: flex;
   gap: 16px;
-  max-width: 282px;
+  min-width: 282px;
+  
   
 
 
@@ -30,6 +31,10 @@ export const StyledCard = styled.div`
     font-size: 16px;
     font-weight: 700;
     color: #000000;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    width: ${props => props.width || '162px'}; 
   }
 
 

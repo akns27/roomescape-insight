@@ -1,20 +1,21 @@
 // import React from "react";
 
 import search from "../../assets/search.svg";
-import * as s from "./index"
+import logo from "../../assets/logo.svg";
+import * as s from "./index";
 
 const Header = () => {
   return (
-    <s.StyledHeader>
-      <div className="logo">
-        <div>방탈출</div>
-        <div>인사이트</div>
-      </div>
-      <div className="search-container">
-        <img className="search-icon" alt="Search" src={search} />
-      </div>
+    <s.StyledHeader >
+      <img alt="logo" src={logo} />
+      <s.SearchInputWrapper>
+        <s.SearchInput placeholder="방탈출을 검색해보세요" />
+        <s.SearchIcon>
+          <img alt="Search" src={search} />
+        </s.SearchIcon>
+      </s.SearchInputWrapper>
     </s.StyledHeader>
   );
 };
 
-export default Header
+export default Header;
