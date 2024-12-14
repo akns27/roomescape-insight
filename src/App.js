@@ -9,17 +9,12 @@ export const InfoCardGrid = styled.div`
   flex-wrap: wrap;
   float: left;
   margin-left: 24px;
+  padding-bottom: 100px;
   
   
 `;
 
-export const InfoCardContainer = styled.div`
-  float: left;
-  display: flex;
-  flex-direction: column;
-  margin-top: 80px;
-  margin-left: 24px;
-`
+
 
 export const H1 = styled.h1`
   font-size: 20px;

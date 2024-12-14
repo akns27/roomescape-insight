@@ -4,15 +4,19 @@ export const MapContainer = styled.div`
   position: relative;
 `;
 
-export const StyledMap = styled.div`
+export const KakaoMap = styled.div`
   width: 80%;
   height: 560px;
   border-radius: 40px;
-  background-color: #EAEAEA;
+  /* background-color: #EAEAEA; */
   float: left;
   margin-left: 24px;
   margin-top: 28px;
-  
+  z-index: 0;
+
+  & > div {
+    border-radius: inherit;
+  }
 `;
 
 export const OnMapCardWrapper = styled.div`
@@ -38,6 +42,7 @@ export const OnMapCardGrid = styled.div`
   gap: 16px;
   overflow-x: auto;
   white-space: nowrap;
+  z-index: 10;
 
   &::-webkit-scrollbar {
     background: transparent;

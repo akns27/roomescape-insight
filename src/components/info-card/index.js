@@ -6,7 +6,9 @@ export const StyledInfoCard = styled.div`
   border-radius: 16px;
   box-shadow: 0px 8px 10px -8px #0000141a, 0px 5px 20px -8px #0000141a;
   width: 276px;
-  padding: 13px;
+  padding: 13px 12px 21px 12px;
+  min-height: 351px;
+  max-height: 351px;
 
 
 
@@ -16,23 +18,24 @@ export const StyledInfoCard = styled.div`
     border-radius: 16px;
     margin-bottom: 14px;
     object-fit: cover;
+    /* object-position: top; */
   }
 
   .title {
     font-size: 16px;
     font-weight: 700;
-    margin-bottom: 4px;
-  }
 
+  }
 
 
   .subtitle {
     font-size: 14px;
     color: #676767;
-    margin-bottom: 16px;
+
   }
 
   .info-container {
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;

@@ -14,20 +14,18 @@ function App() {
     <>
       <Header />
       <SideDeck />
-      <Map />
-      {/* <s.InfoCardContainer> */}
+      {/* <Map /> */}
+
         <s.FlexStyle style={{padding:'40px 0px 24px 0px'}}>
           <s.H1>검색결과</s.H1>
-          <s.P1>1234개</s.P1>
+          <s.P1>{themeData.length}개</s.P1>
         </s.FlexStyle>
         <s.InfoCardGrid>
           {themeData.map((theme) => (
             <InfoCard key={theme.id} data={theme} />
           ))}
         </s.InfoCardGrid>
-        {/* <InfoCard/> */}
-        {/* <OnMapCard/> */}
-      {/* </s.InfoCardContainer> */}
+
     </>
   );
 }
