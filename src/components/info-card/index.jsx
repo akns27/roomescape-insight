@@ -6,12 +6,22 @@ import trophy from "../../assets/trophy.svg";
 import rating from "../../assets/kid_star.svg"
 import * as s from "./index";
 import { themeData } from "../../data/theme-data";
+import { useNavigate } from "react-router-dom";
 
 const InfoCard = ({ className, data }) => {
-  const { imageUrl, themeName, cafeName, info } = data;
+  const navigate = useNavigate();
+  const { imageUrl, themeName, cafeName, info, id } = data;
+
+
+  // 카드 클릭 시 상세 페이지로 이동하는 함수
+  const handleCardClick = () => {
+    // id를 사용하여 상세 페이지로 이동
+    navigate(`/theme/${id}`);
+  };
+
   return (
-    <s.StyledInfoCard className={className}>
-      <img className="thumbnail" src={imageUrl} alt={themeName} />
+    <s.StyledInfoCard className={className} onClick={handleCardClick}>
+      <img className="thumbnail" src={imageUrl} alt={themeName} style={{cursor: 'pointer'}} />
 
       <div style={{ display: "flex", flexDirection: "column", gap: "21px" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>

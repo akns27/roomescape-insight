@@ -26,6 +26,7 @@ export const OnMapCardWrapper = styled.div`
   right: 0.8%;      
   width: 80%;
   float: left;
+  z-index: 10;
   & > *:first-child {
     padding-left: 32px;
   }
