@@ -26,7 +26,7 @@ export const themeData = [
       "https://naverbooking-phinf.pstatic.net/20220926_257/1664165759585Df8P7_PNG/%B0%E6%BC%BA_FINAL.png",
     themeName: "경성 연쇄실종사건",
     cafeName: "미스터리룸이스케이프 홍대2호점",
-    resvUrl: "http://mysteryroomescape-hd2.com/reservation/reservation.html",
+    resvUrl: "https://xdungeon.net/layout/res/home.php?go=rev.main&s_zizum=5",
     lat: 37.5522078, //위도
     lng: 126.9221246, //경도
     info: {
@@ -346,7 +346,7 @@ export const themeData = [
   //   themeName: "경성 연쇄실종사건",
   //   cafeName: "비트포비아 홍대던전3",
   //   lat: 126.9222655,
-  //   lng: 37.5528196,
+  //   lng: 37.5528196,경
   //   info: {
   //     award: "없음",
   //     genre: "추리",
