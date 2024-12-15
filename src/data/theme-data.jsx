@@ -7,7 +7,7 @@ export const themeData = [
     cafeName: "지구별방탈출 홍대어드벤처점",
     lat: 37.5522078, //위도
     lng: 126.9221246, //경도
-    resvUrl: "https://www.xn--2e0b040a4xj.com/reservation?branch=2&theme=7#list",
+    resvUrl: "https://www.xn--2e0b040a4xj.com/reservation?branch=2&theme=17",
     info: {
       award: "없음",
       genre: "미스터리",
